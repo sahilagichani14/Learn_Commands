@@ -5,5 +5,22 @@ git init
 git status
 git add
 git commit -m "file changed"
-git restore git\ cmds.txt
+git restore git\ cmds.txt -> to restore file
 git add -A
+git add .
+git checkout index.html -> to undo changes
+git diff
+git diff --staged -> chk changes in files of staging area
+git diff HEAD -> chk changes in files after commiting
+git show -> to show objects
+git log
+git log -p -2 -> tels logs for last 2 changes
+git log --stat
+git rm -f index.html -> will delete file permanently
+git rm --cached index.html -> will remove file from staging area to normal
+git branch --list
+git branch dev1
+git checkout dev1 -> to switch to dev1 branch
+git checkout master -> to master
+
+
