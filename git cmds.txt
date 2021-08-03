@@ -1,0 +1,7 @@
+git --version
+git config --global user.name "sahil"
+git config --global user.email "sahilagichani@gmail.com"
+git init
+git status
+git add
+git commit -m "file changed"
