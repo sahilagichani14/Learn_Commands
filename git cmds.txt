@@ -114,3 +114,4 @@ git push origin bugfix:mybugfix -> means local bugfix ko push krro but name remo
 git push -d origin bugfix -> will delete bugfix on github
 
 merge conflict: see diagram, master & dev branch mai same jageh 2 diff code toh it will ask you konsa you want.
+how to rename branches?
