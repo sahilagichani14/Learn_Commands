@@ -1,26 +1,92 @@
+git uses checksum of a file to match changes, har file ka checksum cal krr skte h.
+cntrl ++ -> to zoom font in linux
+3 stage architecture: working directory --(stage files)--> staging area --(commit)--> git repo --(checkout the project)--> working directory
+file status lifecycle: untracked --(add the file)--> unmodified --(edit the file)--> modified --(stage tha file)--> staged --(commit)--> unmodified --(remove file)--> untracked
+1st time when git add --a is run then it doesn't go to staging area(it goes but we say it goes to unmodified theoritically). it just start tracking those files & comes to unmodified stage.
+after commiting file comes to unmodified stage of status life cycle.
+git tracks folders also not just files.
+
+scenario1: if file added to staging area, then modified file then commit krne ke pehle vali jo staging mai h vhi jaynge, abhi vale changes will not go unless firse unko stage krro.
+
+scenario2: git ignore file ke andar name h jiss file ka, & if we do changes in them to git status mai won't show
+inside gitignore use "*.log" to ignore all .log files & use "dir/" to ignore koi bhi folder with name dir(might also be inside any folder, but folder ke bahar vali files show hongi just dir folder ignore hoga) in git status
+to not ignore andar wale dir folder use "/dir/" & andar vale ke liye use "/status/dir/"
+
+scenario3: file staged, then modified toh it will show in staging as well as in modifies red as version2, & if staged again toh jo staging area mai h will be overwritten.
+           now "git diff" krro toh it will tell diff btw staging area & working directory. now if git add . then git diff then kch nhi show krega.
+
+scinario4: to show diff btw staging area use "git diff --staged" to compare last commit from abhi present staging area.
+commit ke msg mai write what changes you made.
+
+scenario5: ek file ko modify krro, & make a new file, so git status mai ek untracked file & one modified both in red, now "git commit -a -m "directcommit"" so it will commit only file jo tracked hai, not the untracked one.
+
+scenario6: if we rename file then git status will say you have deleted a file & added new untracked file. but if "git add ." this file then git status will get to know that you have renamed this file.
+
+scenario7: keep a file in gitignore, then "git add ." to add modified gitignore to staging area & then commit "gitignore commited", then if we modify file who's name in gitignore then git status will show modified red(gitignore mai file hone ke baad bhi uske modification show krr rha h) as pehle voh tracked mai thi we just added it to gitignore & modified
+           so use git rm --cached filename.txt -> to remove file from being trackable, ab yeh file ko track nhi krrega & git status mai it will show ki yeh file delete ho gyi but we have made it untrackable not deleted.
+
+scenario8: 
+
+
+q -> to quit pager if git log have all commit
+cd -> change directory
+ls -> list files in present directory
+pwd -> present working directory
+whoami -> which user it is
+cat xyz -> will show details of xyz
+sudo su - svc4805 -> to change it to super user or login as super user
+touch error.log -> to create file in linux
+touch .gitignore -> creat .gitignore file
+
+
+git log --pretty=oneline -> commits ek line mai show honge sundar way mai
+git log --pretty=short
+git log --pretty=full -> author jisne first file create krri, commit means jisne changes krre
+git log --since=2.days/weeks/months/years -> last 2 day/week/month/years commits
+git log --pretty=format:"%h" -- "%ae" -> see documentation
+git log -p -> kya diff the
+git commit --amend -> you change the file which was cloned from net, use this cmd to open a vim editor(i to edit & add changes in previous commits, press esc button, press :, type wq to commit new changes) 
+rm -rf .git -> remove git directory
+git clone https:xyz.com foldername -> clone on local with folder name
 git --version
 git config --global user.name "sahil"
 git config --global user.email "sahilagichani@gmail.com"
+git config --list -> to show all list
 git init
 git status
 git add
+git rm index.html -> to delete file
+git mv first.txt first_renamed.txt -> to rename file & will also place it to staged area.
+touch .gitignore -> creat .gitignore file
 git commit -m "file changed"
+git commit -1 -m "direct commit" -> directly commit without keeping in staging area.(but only tracked files ko krrega commit)
 git restore git\ cmds.txt -> to restore file
-git add -A
-git add .
+git add -A/ git add . / git add --a
 git checkout index.html -> to undo changes
 git diff
 git diff --staged -> chk changes in files of staging area
 git diff HEAD -> chk changes in files after commiting
 git show -> to show objects
 git log
-git log -p -2 -> tels logs for last 2 changes
-git log --stat
+git log -p -2 -> tels logs for last 2 commit logs
+git log --stat -> detail logs
 git rm -f index.html -> will delete file permanently
+git rm --cached filename.txt -> to remove file from being trackable, will remove file from staging area to normal
 git rm --cached index.html -> will remove file from staging area to normal
 git branch --list
 git branch dev1
 git checkout dev1 -> to switch to dev1 branch
 git checkout master -> to master
+git branch -D dev1 -> to delete branch, but for that switch to other branch
+git merge dev1 -> pehle master branch mai rehke use this cmd to merge dev1 to master
+git checkout -b dev2 -> to create & switch to new brnch dev2
+git remote add origin https://github.com/sahilagichani14/microservices.git
+git remote -v -> list of remote repo
+git push -u origin main -> push all main to remote repo
+git restore --staged index.html -> to unstage file
+git checkout -- index.html -> iske pehle vale commit mai file jaisi thi vaisi ho jayegi(but beaware ki commit nhi krra direct yeh run krra toh apka data gya)(but staging area pe daal diya after changes then yeh cmd chalai toh no kch change ya purana commit nhi hoga)
+git checkout -f -> commit krne ke baad if this toh last commit pe le jayega
 
-
+git remote add demo https://github.com/sahilagichani14/microservices.git -> add demo remote which you can see by "git remote" 
+git remote -v -> will tell 2 repos, one for pull & other for push.
+git push -u demo master -> push to demo repo in master branch
