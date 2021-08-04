@@ -1,5 +1,7 @@
+see video13 from codewith harry to setup ssh for remote git repo
 git uses checksum of a file to match changes, har file ka checksum cal krr skte h.
 cntrl ++ -> to zoom font in linux
+shift insertkey -> to paste like cntrl v in linux
 3 stage architecture: working directory --(stage files)--> staging area --(commit)--> git repo --(checkout the project)--> working directory
 file status lifecycle: untracked --(add the file)--> unmodified --(edit the file)--> modified --(stage tha file)--> staged --(commit)--> unmodified --(remove file)--> untracked
 1st time when git add --a is run then it doesn't go to staging area(it goes but we say it goes to unmodified theoritically). it just start tracking those files & comes to unmodified stage.
@@ -90,3 +92,25 @@ git checkout -f -> commit krne ke baad if this toh last commit pe le jayega
 git remote add demo https://github.com/sahilagichani14/microservices.git -> add demo remote which you can see by "git remote" 
 git remote -v -> will tell 2 repos, one for pull & other for push.
 git push -u demo master -> push to demo repo in master branch
+git config --global alias.st status -> name status as st as alias, so now you can run git status by "git st"
+git config --global alias.unstage 'restore --staged --'  -> now you can use "git unstage index.html" to unstage file
+git config --global alias.last 'log -p -1' -> alias of last commit "git last"
+......................................
+master se jo branch h usse bhi ek aur branch nikal skte h
+gitignore ke andar jo files h that won't be affted if we change branch
+avoid keeping other branch in modified or staged while checking out to other branch, commit krne ke baad hi checkout krre(recommended)
+git doesn't track empty folders
+git push origin bugfix -> git hub pe explicitly push krna pdega alag alag branch
+
+git merge develep -> merge master with develop 
+git branch -> will show all branches
+git checkout -b develop -> create & switch to develop branch
+git branch -v -> will show hash & last commit msg with branch names 
+git branch --merged -> will show already merged branches(won't show master)
+git branch --no-merged -> will show not merged branches(won't show master)
+git branch -d develop -> to delete branch if merged, if develop not merged it will show error
+git branch -D develop -> forceful delete without error
+git push origin bugfix:mybugfix -> means local bugfix ko push krro but name remote repo pe mybugfix krro
+git push -d origin bugfix -> will delete bugfix on github
+
+merge conflict: see diagram, master & dev branch mai same jageh 2 diff code toh it will ask you konsa you want.
