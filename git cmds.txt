@@ -115,3 +115,13 @@ git push -d origin bugfix -> will delete bugfix on github
 
 merge conflict: see diagram, master & dev branch mai same jageh 2 diff code toh it will ask you konsa you want.
 how to rename branches?
+...................................................
+git clone https://github.com/Casperrules/IMS_backend.git
+cd IMS_backend
+git remote add ims_dev https://github.com/Casperrules/IMS_backend.git -> to add remote repo as ims_dev 
+git branch -a -> to see all branches
+git checkout develop -> to go to develop
+git pull -all OR git fetch -> to pull all branches if added
+git remote -v -> to see where to push & pull
+
+
