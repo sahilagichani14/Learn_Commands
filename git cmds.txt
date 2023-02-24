@@ -123,5 +123,11 @@ git branch -a -> to see all branches
 git checkout develop -> to go to develop
 git pull -all OR git fetch -> to pull all branches if added
 git remote -v -> to see where to push & pull
+....................................................
 
+git clone https://github.com/sahilagichani14/LetsArgueCA.git
+add files in 'E:\germany_details\Uni-assist LOM\paderborn admit\sem1\Computational Argumentation\gitrepoLetsArgue\LetsArgueCA'
+git add filenames
+git commit -m ""
+git push origin master
 
