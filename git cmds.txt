@@ -131,3 +131,8 @@ git add filenames
 git commit -m ""
 git push origin master
 
+.....................................
+
+git remote rm origin -> to remove remote repo origin
+ 
+
