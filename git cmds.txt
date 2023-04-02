@@ -135,4 +135,23 @@ git push origin master
 
 git remote rm origin -> to remove remote repo origin
  
+.....................................
+
+git restore --staged 1.txt -> to remove 1.txt from staging area
+git reset [commitId] -> to go to that commit & all commits after that will be deleted
+git stash -> stash changes
+git stash pop -> come back from stash
+git stash clear -> get rid of stash
+git remote add upstream url -> add url of parent project which u forked into ur account
+
+{
+git fetch --all --prune -> fetch all upstream branches also deleted one's as well
+git reset --hard upstream/main -> after fetch cmd abv, ur origin/main sync with upstream/main 
+git push origin main -> pusing synced main (local) to remote main
+}
+OR
+git pull upstream main
+git push origin main
+
+git rebase -i [commitId] -> open interactive shell & use p for pick & s for squash so all s will become 1 single commit, :x for writing commit msg
 
