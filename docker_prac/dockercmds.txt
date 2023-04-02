@@ -1,0 +1,64 @@
+wsl.exe --update
+wsl --install
+docker -v
+docker pull [imgName]
+docker pull [imgName]:[version]
+docker run [imgName]
+docker images
+docker search [imgName]
+docker ps/ docker container ls
+docker ps -a
+docker run --name abcContainer -d [imgName or imgId] -> in detach mode
+docker run -it -d [imgName] -> interactive mode + detach mode
+docker exec -it [containerId] [cmd which u want to exec eg python3/jshell/bash, u can see this in docker ps]
+docker exec -i -t [containerId] sh
+mysql -p -> for mysql terminal
+/exit -> to exit from jshell
+docker run --name [xyz] -e MYSQL_ROOT_PASSWORD=[password eg root] -d [imgName]
+docker inspect [containerId/imgId] 
+docker run --name [nginxServer] -d -p 8080:80 [imgName]
+docker stop [containerName or Id]
+docker kill [containerName or Id] -> force stop
+docker rm [containerId] [another Id if to stop more containers]
+docker rmi [imgName]
+
+
+
+[
+ docker run -it ubuntu
+ touch names.txt
+ echo "message"
+ docker start [containerId]
+ docker exec -it [containerId] bash 
+ docker commit -m "added txt file" [containerId] [imgName, custom name]
+ docker stop [containerId]
+ docker run -it [imgName, used ]
+]
+
+[
+docker run -it ubuntu
+apt-get update
+apt-get install -y python3
+]
+
+
+docker login
+docker commit
+docker push
+docker network
+docker copy
+docker logs [containerName]
+docker volume
+docker logout
+
+docker build -t [tag img Name] . -> to build img in . curr folder
+
+
+
+
+
+
+
+
+
+
