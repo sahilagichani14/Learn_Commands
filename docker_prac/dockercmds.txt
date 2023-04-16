@@ -22,6 +22,7 @@ docker kill [containerName or Id] -> force stop
 docker rm [containerId] [another Id if to stop more containers]
 docker rmi [imgName]
 
+docker system prune -a -f -> will remove all cache so when creating img again will download everything again
 
 
 [
