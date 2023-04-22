@@ -152,6 +152,13 @@ git push origin main -> pusing synced main (local) to remote main
 OR
 git pull upstream main
 git push origin main
+git push origin --all
+{
+git fetch upstream
+git merge upstream/dev dev
+}
+or
+git pull upstream dev
 
 git rebase -i [commitId] -> open interactive shell & use p for pick & s for squash so all s will become 1 single commit, :x for writing commit msg
 
