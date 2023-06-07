@@ -18,8 +18,11 @@ docker run --name [xyz] -e MYSQL_ROOT_PASSWORD=[password eg root] -d [imgName]
 docker inspect [containerId/imgId] 
 docker run --name [nginxServer] -d -p 8080:80 [imgName]
 docker stop [containerName or Id]
+docker start [containerName or Id]
+docker restart [containerName or Id] -> when config changed for nginx or anything then we restart like this
 docker kill [containerName or Id] -> force stop
 docker rm [containerId] [another Id if to stop more containers]
+docker rm -f [containerId]
 docker rmi [imgName]
 
 docker system prune -a -f -> will remove all cache so when creating img again will download everything again
@@ -54,9 +57,50 @@ docker logout
 
 docker build -t [tag img Name] . -> to build img in . curr folder
 
+...................................
 
+sudo su -> to get super user access
+docker run -it -d --name [abcContainername] -p 80:80 [imgName] -> interactice, detach mode, name, port publish at 0.0.0.0:80->80 localhost0.0.0.0 80 is default of container
+[
+docker exec -it [containerName] bash
+apt update
+apt install nginx -y -> y puts yes if it askes for it
+service nginx status -> status of nginx
+service nginx start -> start nginx
+exit
+take ip address of VM & put in browser to run nginx
+]
 
+docker commit [containerId] [newImgName] -> when we want to save all configs which we did in container, we have to give it a new img name
+docker tag [imgName] [username/newImgName] -> to give new name to an img, give username of docker hub & then /
+docker login
+docker push [username/newImgName:tagname] -> to push img with given tag version
 
+Few Docker File Commands: FROM, WORKDIR, ADD, COPY, RUN, CMD, VOLUME, EXPOSE, ENTRYPOINT, LABEL
+[
+main.py
+dockerfile
+ [
+  FROM ubuntu:latest
+  WORKDIR /app -> creates a work dir (to run shell cmds in this dir during build time of img) /app if not present
+  ADD . /app -> everything in my local curr dir goes to /app
+  RUN apt update && apt install python -y                    -> \ &  | can also be used to merge into 1 layer
+  CMD python /app/main.py
+  CMD ["service", "nginx", "start"]
+  LABEL maintainer="sagichani@pxc.com" 
+ ]
+docker build -t [custom-img-name] . -> build img & find docker file in . curr dir
+]
+
+............................................
+
+Storage: Volumes, Bind Mount, Tmpfs mount
+
+docker volume create [volName] -> create volume
+docker volume ls
+docker volume inspect [volName] -> more info of vol
+docker volume rm [volName] -> remove vol
+docker volume prune -> del all
 
 
 
