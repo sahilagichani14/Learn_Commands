@@ -100,9 +100,63 @@ docker volume create [volName] -> create volume
 docker volume ls
 docker volume inspect [volName] -> more info of vol
 docker volume rm [volName] -> remove vol
-docker volume prune -> del all
+docker volume prune -> del all vol
+docker run -it -d --name [containerName] --mount source=[volName],target=/apps [imgName] -> create src vol if not present, target is place where vol is mapped inside container, mount can be used for bind, tmpfs, and even vol 
+docker run -it -d --name [containerName] --mount source=[volName],target=/apps,readonly [imgName] -> readonly vol
+docker container inspect [containerName]
+docker run -it -d --name [containerName] --volume [volName]:/apps [imgName] -> vol used for only vol
+
+[
+ docker run -it -d --name [containerName] --mount type=bind,source=$(pwd)/custom_dir,target=/apps [imgName] -> bind mount which docker doesn't manage
+ docker run -it -d --name [containerName] --mount type=bind,source=$(pwd)/custom_dir,target=/apps,readonly [imgName] -> all info inside /custom_dir is readonly for container, but can add
+ docker exec -it [containerName] bash
+ ls -> /apps folder as workdir should be there
+ cd apps/
+ touch hello.txt
+ exit
+ -> now whatever we created in /apps in docker will be present in local or host system /custom_dir
+ touch abc.txt -> inside local /custom_dir
+ docker exec -it [containerName] bash
+ ls
+ cd apps/
+ -> now whatever we created in local or host system /custom_dir will be present in /apps in docker
+]
+
+tmpfs -> store data on host or local sys (only on linux), but temp, gets del if container attached to it are stopped, thus gets mapped to only 1 container in their lifetime
+[
+ docker run -it -d --name [containerName] --mount type=tmpfs,target=/apps [imgName] -> src not req
+ docker run -it -d --name [containerName] --tmpfs /apps [imgName] -> short cmd
+]
+
+....................................................
+
+Network driver: Bridge(default), Host, Overlay, Macvlan, None
+
+docker network create --driver [networkdrivertype] [networkName]
+docker network ls
+docker network inspect [networkId/networkName]
+
+[
+ docker exec -it [containerName] bash
+ apt update && apt install iputils-ping -y
+ docker network inspect [networkId/networkName] -> get container's ip u want to ping
+ docker exec -it [containerName] bash -> in which u installed bash
+ ping [ip]
+]
+
+docker run -it -d --network host --name [containerName] [imgName] -> container will not have any ip, it will share namespace/ip with host
+curl localhost
 
 
+docker swarm init -> create a ntwrk or swarm on this server & create it as manager node
+docker network create --driver overlay [overlaynetworkName]
+
+docker service create --name [serviceName] --network [networkName] --replicas 3 [imgName] -> creates 3 containers & put in 1 network
+docker service ps [serviceName]
+
+docker run -it -d --name [containerName] --network none [imgName]
+
+..............................................................
 
 
 
