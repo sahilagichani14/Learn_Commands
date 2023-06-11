@@ -153,11 +153,67 @@ docker network create --driver overlay [overlaynetworkName]
 
 docker service create --name [serviceName] --network [networkName] --replicas 3 [imgName] -> creates 3 containers & put in 1 network
 docker service ps [serviceName]
+docker service ls 
 
 docker run -it -d --name [containerName] --network none [imgName]
 
 ..............................................................
 
+download docker compose seperately via cmd "curl -L "https://github.com/docker/compose..." -o /usr/local/bin/docker-compose"
+chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+
+docker-compose.yml file (2 spaces, have to define mysql root password, etc)
+[
+ version:'3'
+ networks:
+   [networkName]:
+     driver: bridge/overlay/
+ 
+ services:
+   OS:
+    image: "[imgName]"
+    ports:
+      - "80:80"
+    networks:
+      - [networkName]
+   
+   database:
+     image: "mysql"
+     networks:
+       - [networkName]
+     volume:
+       - db_data:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: admin123
+       MYSQL_DATABASE: [dbName]
+       MYSQL_USER: [username]
+       MYSQL_PASSWORD: [password]
+     
+   volumes:
+     db_data: {} 
+]
+
+docker-compose up
+docker-compose ps
+docker-compose down
+curl localhost:5000
+docker-compose stop
+
+docker-compose run db/wordpress env -> list of env var
+
+docker stack deploy -c docker-compose.yml fun
+
+.......................................................................
+
+docker swarm init --advertise-addr [ip of manager node]
+to add worker cmd is given
+docker node ls
+docker info
+docker swarm leave -> if node wants to leave from the swarm
+docker swarm join-token worker/manager -> to make node as worker or manager, if no manager than swarm gets killed
+docker node rm [nodeId]
 
 
 
